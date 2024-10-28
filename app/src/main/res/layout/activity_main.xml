@@ -16,33 +16,45 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="393dp"
+            android:layout_height="62dp"
             android:layout_margin="10sp"
-            android:text="Enter Text: "
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10sp"
-            android:hint="Enter Text Here" />
+            android:fontFamily="sans-serif-black"
+            android:text="Med Tracker App "
+            android:textColor="#AD1111"
+            android:textSize="40dp"
+            android:typeface="monospace" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="649dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="171dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:baselineAligned="false"
+            android:hint="Email" />
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="171dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:baselineAligned="false"
+            android:hint="Password" />
 
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Click Here"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="Click Here" />
 
     </LinearLayout>
 

@@ -24,14 +24,10 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String text = editText1.getText().toString();
-
-                Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
+                editText1.setText("Incorrect Email");
+            editText1.setText("Incorrect password");
 
             }
         });
-
     }
-}
-
 }
