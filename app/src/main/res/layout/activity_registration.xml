@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title for Registration -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:paddingBottom="24dp" />
+
+        <!-- Username Input -->
+        <EditText
+            android:id="@+id/txtUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:inputType="textEmailAddress"
+            android:padding="12dp" />
+
+        <!-- Password Input -->
+        <EditText
+            android:id="@+id/txtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:password="true" />
+
+        <!-- Provider Email Input -->
+        <EditText
+            android:id="@+id/txtProviderEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="HealthCare Provider Email"
+            android:inputType="textEmailAddress"
+            android:padding="12dp" />
+
+        <!-- Optional Date of Birth Input -->
+        <EditText
+            android:id="@+id/txtDateOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date of Birth (e.g., 01/01/2000)"
+            android:inputType="date"
+            android:padding="12dp" />
+
+        <!-- Optional Name Input -->
+        <EditText
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:padding="12dp" />
+
+        <!-- Optional Gender Input -->
+        <EditText
+            android:id="@+id/txtGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gender (e.g., Male, Female, Other)"
+            android:inputType="text"
+            android:padding="12dp" />
+
+        <!-- Register Button -->
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:layout_marginTop="20dp"
+            android:padding="12dp" />
+    </LinearLayout>
+</ScrollView>

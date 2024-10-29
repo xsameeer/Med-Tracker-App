@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedTrackerApp">
+
+        <!-- Set LoginActivity as the entry point of the app -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -17,7 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+
+        <!-- RegistrationActivity accessible from LoginActivity if login fails -->
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="true" />
+
+        <!-- MainActivity accessible after successful login -->
+        <activity android:name=".HomeActivity" />
     </application>
 
 </manifest>
