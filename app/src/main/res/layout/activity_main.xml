@@ -21,9 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center|center_horizontal|center_vertical"
-            android:text="Med Tracker App"
+            android:text="@string/med_tracker_app"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="48sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -41,7 +41,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.6">
 
         <TextView
             android:id="@+id/textView2"
@@ -49,13 +49,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:text="USERNAME"
+            android:text="@string/email"
             android:textColor="#131313" />
 
         <EditText
             android:id="@+id/txtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName" />
@@ -66,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:text="PASSWORD"
+            android:text="@string/password"
             android:textColor="#2C2B2B" />
 
         <EditText
@@ -79,12 +80,12 @@
             android:password="true" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:text="Provider Email"
+            android:text="@string/provider_email"
             android:textColor="#2C2B2B" />
 
         <EditText
@@ -93,7 +94,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:inputType="textEmailAddress" />
+            android:inputType="text" />
 
         <Button
             android:id="@+id/btnLogin"

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Med Tracker App</string>
+    <string name="med_tracker_app">Med Tracker App</string>
+    <string name="email">EMAIL</string>
+    <string name="provider_email">Provider Email</string>
+    <string name="password">PASSWORD</string>
 </resources>

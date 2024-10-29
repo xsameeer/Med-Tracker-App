@@ -17,17 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Button button = findViewById(R.id.button1);
-        EditText editText1 = findViewById(R.id.editText1);
-
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                editText1.setText("Incorrect Email");
-            editText1.setText("Incorrect password");
-
-            }
-        });
     }
 }
+
