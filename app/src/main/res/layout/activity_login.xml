@@ -59,7 +59,7 @@
             android:autofillHints=""
             android:ems="10"
             android:gravity="center"
-            android:inputType="textPersonName" />
+            android:inputType="textEmailAddress" />
 
         <TextView
             android:id="@+id/textView3"
