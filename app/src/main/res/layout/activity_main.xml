@@ -94,19 +94,20 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:inputType="text" />
+            android:inputType="text"
+            tools:ignore="TextFields" />
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="LOGIN" />
+            android:text="@string/login" />
 
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register" />
+            android:text="@string/register" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

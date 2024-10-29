@@ -20,7 +20,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // SQL statement to create the user table
     private static final String USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
             + COLUMN_EMAIL + " TEXT PRIMARY KEY,"  // Primary key: email
-            + COLUMN_USER_PASSWORD + " TEXT" + COLUMN_PROVIDER_EMAIL+ "TEXT" + ")";    // Password column
+            + COLUMN_USER_PASSWORD + " TEXT,"
+            + COLUMN_PROVIDER_EMAIL+ " TEXT" + ")";    // Password column
 
     // SQL statement to drop the user table if it exists
     private static final String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;

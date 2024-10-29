@@ -1,4 +1,5 @@
 package com.example.medtrackerapp;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,11 +15,12 @@ public class LoginActivity extends AppCompatActivity {
     // DatabaseHelper instance for managing database operations
     private DatabaseHandler databasehandler;
 
-    EditText txtUsername = findViewById(R.id.txtUsername);
-    EditText txtPassword = findViewById(R.id.txtPassword);
-    EditText txtProviderEmail = findViewById(R.id.txtProviderEmail);
-    Button btnRegister = findViewById(R.id.btnRegister);
-    Button btnLogin = findViewById(R.id.btnLogin);
+    // Declare views
+    private EditText txtUsername;
+    private EditText txtPassword;
+    private EditText txtProviderEmail;
+    private Button btnRegister;
+    private Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,13 @@ public class LoginActivity extends AppCompatActivity {
 
         // Initializes the DatabaseHelper with the current context
         databasehandler = new DatabaseHandler(this);
+
+        // Initialize views after setContentView
+        txtUsername = findViewById(R.id.txtUsername);
+        txtPassword = findViewById(R.id.txtPassword);
+        txtProviderEmail = findViewById(R.id.txtProviderEmail);
+        btnRegister = findViewById(R.id.btnRegister);
+        btnLogin = findViewById(R.id.btnLogin);
 
         // Sets up the listeners for the Register and Login buttons
         btnRegisterListener();

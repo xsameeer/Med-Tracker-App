@@ -4,4 +4,6 @@
     <string name="email">EMAIL</string>
     <string name="provider_email">Provider Email</string>
     <string name="password">PASSWORD</string>
+    <string name="register">Register</string>
+    <string name="login">LOGIN</string>
 </resources>
