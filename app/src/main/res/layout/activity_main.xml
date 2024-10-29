@@ -78,6 +78,23 @@
             android:inputType="textPassword"
             android:password="true" />
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="Provider Email"
+            android:textColor="#2C2B2B" />
+
+        <EditText
+            android:id="@+id/txtProviderEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textEmailAddress" />
+
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
