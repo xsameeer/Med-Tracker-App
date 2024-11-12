@@ -9,78 +9,87 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Title for Registration -->
+        <!-- Title for Registration Page -->
         <TextView
+            android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
-            android:textSize="24sp"
+            android:text="@string/register"
+            android:textSize="32sp"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:paddingBottom="24dp" />
+            android:paddingBottom="24dp"
+            android:textColor="#000000" />
 
-        <!-- Username Input -->
+        <!-- Username Input Field -->
         <EditText
             android:id="@+id/txtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
-            android:inputType="textEmailAddress"
-            android:padding="12dp" />
+            android:hint="@string/username"
+            android:inputType="text"
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background" />
 
-        <!-- Password Input -->
+        <!-- Password Input Field -->
         <EditText
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:password="true" />
+            android:background="@drawable/edit_text_background" />
 
-        <!-- Provider Email Input -->
+        <!-- HealthCare Provider Email Input Field -->
         <EditText
             android:id="@+id/txtProviderEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="HealthCare Provider Email"
+            android:hint="@string/provider_email"
             android:inputType="textEmailAddress"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background" />
 
-        <!-- Optional Date of Birth Input -->
+        <!-- Date of Birth Input Field -->
         <EditText
             android:id="@+id/txtDateOfBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date of Birth (e.g., 01/01/2000)"
+            android:hint="@string/date_of_birth_hint"
             android:inputType="date"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background" />
 
-        <!-- Optional Name Input -->
+        <!-- Full Name Input Field -->
         <EditText
             android:id="@+id/txtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
+            android:hint="@string/full_name"
             android:inputType="textPersonName"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background" />
 
-        <!-- Optional Gender Input -->
+        <!-- Gender Input Field -->
         <EditText
             android:id="@+id/txtGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Gender (e.g., Male, Female, Other)"
+            android:hint="@string/gender_hint"
             android:inputType="text"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background" />
 
         <!-- Register Button -->
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="@string/register"
             android:layout_marginTop="20dp"
+            android:backgroundTint="#3F51B5"
+            android:textColor="#FFFFFF"
             android:padding="12dp" />
     </LinearLayout>
 </ScrollView>
