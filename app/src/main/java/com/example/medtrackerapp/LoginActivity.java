@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtPassword;
     private Button btnLogin;
     private Button btnRegister;
+    private Button btnforgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,12 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Username or password is incorrect. Please try again.", Toast.LENGTH_SHORT).show();
             }
+        });
+    }
+
+    private void setBtnforgotPassword(){
+        btnforgotPassword.setOnClickListener(v -> {
+
         });
     }
 }

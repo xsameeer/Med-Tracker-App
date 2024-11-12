@@ -49,10 +49,13 @@ public void btnRegisterListener() {
             user.setGender(txtGender.getText().toString().trim());
 
             databasehandler.addUser(user);
+            Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+            startActivity(intent);  // takes you back to login screen after registration
             Toast.makeText(this, "User created successfully", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show();
         }
-    });
+        });
+    };
 }
-}
+
