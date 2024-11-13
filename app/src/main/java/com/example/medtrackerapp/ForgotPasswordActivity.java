@@ -16,7 +16,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private DatabaseHandler databasehandler;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_forgotpassword);
         databasehandler = new DatabaseHandler(this);
 
         if (databasehandler.checkUser(
