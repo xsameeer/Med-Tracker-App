@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    tools:ignore="ExtraText">
 
     <!-- App Title -->
-
-    <!-- Profile Picture Section -->
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -23,21 +22,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/profilePicture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/ic_profile_placeholder" <!-- Replace with your profile image -->
-    android:background="@drawable/circle_background" <!-- Optional: Circular background -->
+    <!-- Profile Picture Section -->
+    <!-- Reference to image in drawable -->
     app:layout_constraintTop_toBottomOf="@id/textView5"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Main Content Section with Title and Calendar -->
+    <ImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/greenhairbil-sus-dog.gif"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="199dp" />
 
-    <!-- Button Section -->
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
@@ -52,17 +51,20 @@
 
     </LinearLayout>
 
+    <!-- Button Section -->
+
     <LinearLayout
         android:id="@+id/buttonLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2"
-        android:padding="8dp">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
 
         <!-- Button 1 -->
 
@@ -73,48 +75,18 @@
         <!-- Button 4 -->
 
         <!-- Button 5 -->
-
     </LinearLayout>
 
-    <!-- Profile Picture Section -->
-    <ImageView
-        android:id="@+id/profilePicture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:src="greenhairbil-sus-dog.gif" <!-- Replace with your profile image -->
-        android:background="@drawable/circle_background" <!-- Optional: Circular background -->
-        app:layout_constraintTop_toBottomOf="@id/textView5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Reports"
-        tools:layout_editor_absoluteX="240dp"
-        tools:layout_editor_absoluteY="440dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Calendar"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="366dp" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Settings"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="440dp" />
+        android:gravity="center"
+        android:text="Home Screen"
+        android:textColor="#131313"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="109dp"
+        tools:layout_editor_absoluteY="509dp" />
 
     <Button
         android:id="@+id/button1"
@@ -122,8 +94,17 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Medication"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="366dp" />
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="350dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Calendar"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="350dp" />
 
     <Button
         android:id="@+id/button3"
@@ -131,6 +112,25 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Profile"
-        tools:layout_editor_absoluteX="302dp"
-        tools:layout_editor_absoluteY="366dp" />
+        tools:layout_editor_absoluteX="299dp"
+        tools:layout_editor_absoluteY="350dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Settings"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="412dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Reports"
+        tools:layout_editor_absoluteX="284dp"
+        tools:layout_editor_absoluteY="412dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
