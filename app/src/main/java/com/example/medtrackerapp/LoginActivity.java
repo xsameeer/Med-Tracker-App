@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
+        btnforgotPassword = findViewById(R.id.btnforgotPassword);
 
         // Set the Register button to open RegistrationActivity
         btnRegister.setOnClickListener(v -> {
@@ -62,7 +63,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void setBtnforgotPassword(){
         btnforgotPassword.setOnClickListener(v -> {
-
+        Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+        startActivity(intent);
+        Toast.makeText(this, "Forgot Password", Toast.LENGTH_SHORT).show();
         });
     }
 }
