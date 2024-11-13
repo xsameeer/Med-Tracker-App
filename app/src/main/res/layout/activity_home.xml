@@ -8,6 +8,17 @@
     tools:ignore="ExtraText">
 
     <!-- App Title -->
+
+    <!-- Profile Picture Section -->
+    <!-- Reference to image in drawable -->
+    app:layout_constraintTop_toBottomOf="@id/textView5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Main Content Section with Title and Calendar -->
+
+    <!-- Button Section -->
+
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -18,26 +29,17 @@
         android:textColor="#000000"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.729"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Profile Picture Section -->
-    <!-- Reference to image in drawable -->
-    app:layout_constraintTop_toBottomOf="@id/textView5"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Main Content Section with Title and Calendar -->
     <ImageView
         android:id="@+id/profilePicture"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/greenhairbil-sus-dog.gif"
+        android:src="@drawable/ic_launcher_foreground"
         tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="199dp" />
-
-    <!-- Button Section -->
+        tools:layout_editor_absoluteY="197dp" />
 
     <Button
         android:id="@+id/button1"

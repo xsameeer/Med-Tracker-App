@@ -26,10 +26,10 @@
             android:id="@+id/txtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/username"
+            android:hint="username"
             android:inputType="text"
             android:padding="12dp"
-            android:background="@drawable/edit_text_background" />
+            android:background="@color/cardview_dark_background" />
 
         <!-- Password Input Field -->
         <EditText
@@ -39,7 +39,7 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:background="@drawable/edit_text_background" />
+            android:background="@color/cardview_dark_background" />
 
         <!-- HealthCare Provider Email Input Field -->
         <EditText
@@ -49,37 +49,37 @@
             android:hint="@string/provider_email"
             android:inputType="textEmailAddress"
             android:padding="12dp"
-            android:background="@drawable/edit_text_background" />
+            android:background="@color/cardview_dark_background" />
 
         <!-- Date of Birth Input Field -->
         <EditText
             android:id="@+id/txtDateOfBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/date_of_birth_hint"
+            android:hint="date_of_birth"
             android:inputType="date"
             android:padding="12dp"
-            android:background="@drawable/edit_text_background" />
+            android:background="@color/cardview_dark_background" />
 
         <!-- Full Name Input Field -->
         <EditText
             android:id="@+id/txtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/full_name"
+            android:hint="full_name"
             android:inputType="textPersonName"
             android:padding="12dp"
-            android:background="@drawable/edit_text_background" />
+            android:background="@color/cardview_dark_background" />
 
         <!-- Gender Input Field -->
         <EditText
             android:id="@+id/txtGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/gender_hint"
+            android:hint="gender"
             android:inputType="text"
             android:padding="12dp"
-            android:background="@drawable/edit_text_background" />
+            android:background="@color/cardview_dark_background" />
 
         <!-- Register Button -->
         <Button
