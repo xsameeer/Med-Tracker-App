@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void setBtnforgotPassword(){
+    private void btnforgotPassword() {
         btnforgotPassword.setOnClickListener(v -> {
         Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
         startActivity(intent);

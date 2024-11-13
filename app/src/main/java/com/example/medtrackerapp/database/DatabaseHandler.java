@@ -105,4 +105,47 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return cursorCount > 0;  // Returns true if a match is found
     }
-}
+
+        // Method to retrieve the email based on username
+        public String getEmailByUsername(String username) {
+            String email = null;
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.query(
+                    "users", // Replace with your table name
+                    new String[]{"email"}, // Column to retrieve
+                    "username = ?", // WHERE clause
+                    new String[]{username}, // Arguments for WHERE clause
+                    null, null, null);
+
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+                }
+                cursor.close();
+            }
+            db.close();
+            return email;
+        }
+
+        // Method to retrieve the password based on username
+        public String getPasswordByUsername(String username) {
+            String password = null;
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.query(
+                    "users", // Replace with your table name
+                    new String[]{"password"}, // Column to retrieve
+                    "username = ?", // WHERE clause
+                    new String[]{username}, // Arguments for WHERE clause
+                    null, null, null);
+
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+                }
+                cursor.close();
+            }
+            db.close();
+            return password;
+        }
+    }
+
