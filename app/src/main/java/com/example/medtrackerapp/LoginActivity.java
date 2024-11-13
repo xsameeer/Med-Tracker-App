@@ -40,6 +40,11 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);  // Starts RegistrationActivity
         });
 
+        btnforgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
+        });
+
         // Sets up the listeners for the Register and Login buttons
         btnLoginListener();
     }
@@ -58,14 +63,6 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Username or password is incorrect. Please try again.", Toast.LENGTH_SHORT).show();
             }
-        });
-    }
-
-    private void btnforgotPassword() {
-        btnforgotPassword.setOnClickListener(v -> {
-        Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-        startActivity(intent);
-        Toast.makeText(this, "Forgot Password", Toast.LENGTH_SHORT).show();
         });
     }
 }
