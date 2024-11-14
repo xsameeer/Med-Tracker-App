@@ -5,13 +5,19 @@ public class Medication {
     private String name; // Medication name
     private int dosage; // Dosage in mg
     private int frequency; // Frequency per day
+    private String daysOfWeek; // Selected days of the week as a comma-separated string
+    private String endDate; // End date for reminders
+    private boolean indefinite; // Indicates if the reminder should continue indefinitely
 
     // Constructor
-    public Medication(int id, String name, int dosage, int frequency) {
+    public Medication(int id, String name, int dosage, int frequency, String daysOfWeek, String endDate, boolean indefinite) {
         this.id = id;
         this.name = name;
         this.dosage = dosage;
         this.frequency = frequency;
+        this.daysOfWeek = daysOfWeek;
+        this.endDate = endDate;
+        this.indefinite = indefinite;
     }
 
     // Getters and Setters
@@ -47,6 +53,30 @@ public class Medication {
         this.frequency = frequency;
     }
 
+    public String getDaysOfWeek() {
+        return daysOfWeek;
+    }
+
+    public void setDaysOfWeek(String daysOfWeek) {
+        this.daysOfWeek = daysOfWeek;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public boolean isIndefinite() {
+        return indefinite;
+    }
+
+    public void setIndefinite(boolean indefinite) {
+        this.indefinite = indefinite;
+    }
+
     // Optional: Override toString() for easy display of medication details
     @Override
     public String toString() {
@@ -55,6 +85,9 @@ public class Medication {
                 ", name='" + name + '\'' +
                 ", dosage=" + dosage +
                 " mg, frequency=" + frequency +
-                "x/day}";
+                "x/day, daysOfWeek='" + daysOfWeek + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", indefinite=" + indefinite +
+                '}';
     }
 }

@@ -1,42 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<!-- dialog_add_medication.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <!-- Medication Name Input -->
+    <!-- Medication name input -->
     <EditText
         android:id="@+id/etMedicationName"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Medication Name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp" />
+        android:hint="Medication Name" />
 
-    <!-- Dosage Input -->
+    <!-- Dosage input -->
     <EditText
         android:id="@+id/etDosage"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Dosage (mg)"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/etMedicationName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp" />
+        android:hint="Dosage (mg)" />
 
-    <!-- Frequency Input -->
+    <!-- Frequency input -->
     <EditText
         android:id="@+id/etFrequency"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Frequency per day"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/etDosage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:hint="Frequency per day" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Days of the week selection layout -->
+    <LinearLayout
+        android:id="@+id/daysLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+        <!-- Days checkboxes will be added here programmatically -->
+    </LinearLayout>
+
+    <!-- Button to set reminder time -->
+    <Button
+        android:id="@+id/btnSetTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Reminder Time" />
+
+    <!-- TextView to display selected reminder time -->
+    <TextView
+        android:id="@+id/tvSelectedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No time selected"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>
