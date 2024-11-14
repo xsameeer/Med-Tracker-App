@@ -5,7 +5,7 @@
     android:id="@+id/activity_medication"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MedicationActivity">
+    tools:context=".Medication.MedicationActivity">
 
     <!-- Title for the Medication Activity -->
     <TextView

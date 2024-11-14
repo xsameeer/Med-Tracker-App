@@ -1,4 +1,4 @@
-package com.example.medtrackerapp;
+package com.example.medtrackerapp.Medication;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.widget.RemoteViews;
 import androidx.core.app.NotificationCompat;
+
+import com.example.medtrackerapp.R;
 
 public class ReminderReceiver extends BroadcastReceiver {
 

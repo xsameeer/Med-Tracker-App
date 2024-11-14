@@ -3,6 +3,9 @@
     package="com.example.medtrackerapp">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,10 +36,10 @@
 
         <!-- MedicationActivity for managing medications -->
         <activity
-            android:name=".MedicationActivity"
+            android:name=".Medication.MedicationActivity"
             android:exported="true" />
 
-        <receiver android:name=".ReminderReceiver" />
+        <receiver android:name=".Medication.ReminderReceiver" />
 
     </application>
 

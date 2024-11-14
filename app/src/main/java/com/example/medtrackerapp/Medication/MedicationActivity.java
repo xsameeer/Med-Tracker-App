@@ -1,5 +1,6 @@
-package com.example.medtrackerapp;
+package com.example.medtrackerapp.Medication;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.medtrackerapp.R;
 import com.example.medtrackerapp.database.DatabaseHandler;
 import com.example.medtrackerapp.model.Medication;
 import java.util.Calendar;
@@ -83,7 +86,6 @@ public class MedicationActivity extends AppCompatActivity {
         // TextView to display reminder time
         TextView tvReminderTime = new TextView(this);
         tvReminderTime.setId(View.generateViewId());
-        tvReminderTime.setText("Reminder: Not set");
 
         // Button to set the reminder
         Button btnSetReminder = new Button(this);
@@ -110,9 +112,9 @@ public class MedicationActivity extends AppCompatActivity {
         row.addView(tvName);
         row.addView(tvDosage);
         row.addView(tvFrequency);
+        row.addView(btnRemove);
         row.addView(tvReminderTime);
         row.addView(btnSetReminder);
-        row.addView(btnRemove);
 
         // Add the row to the table layout
         tableMedications.addView(row);
@@ -178,9 +180,9 @@ public class MedicationActivity extends AppCompatActivity {
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
-        Toast.makeText(this, "reminder succesful", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Reminder Placed", Toast.LENGTH_SHORT).show();
 
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
         // Update reminder display
         tvReminderTime.setText("Reminder set at: " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));

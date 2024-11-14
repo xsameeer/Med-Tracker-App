@@ -4,9 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.*;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.medtrackerapp.Medication.MedicationActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
