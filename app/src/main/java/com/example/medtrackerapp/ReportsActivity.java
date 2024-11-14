@@ -1,4 +1,4 @@
 package com.example.medtrackerapp;
 
-public class CalendarPageActivity {
+public class ReportsActivity {
 }

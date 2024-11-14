@@ -8,17 +8,6 @@
     tools:ignore="ExtraText">
 
     <!-- App Title -->
-
-    <!-- Profile Picture Section -->
-    <!-- Reference to image in drawable -->
-    app:layout_constraintTop_toBottomOf="@id/textView5"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Main Content Section with Title and Calendar -->
-
-    <!-- Button Section -->
-
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -33,57 +22,84 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Profile Picture Section -->
     <ImageView
         android:id="@+id/profilePicture"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_launcher_foreground"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="197dp" />
+        app:layout_constraintTop_toBottomOf="@id/textView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/button1"
+    <!-- Main Content Section with Medication, Calendar, and Profile Buttons -->
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Medication"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="350dp" />
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/profilePicture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp">
+
+        <Button
+            android:id="@+id/btnMedication"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medication" />
+
+        <Button
+            android:id="@+id/btnCalendar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Calendar" />
+
+        <Button
+            android:id="@+id/btnReports"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Reports" />
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Calendar"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="350dp" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Profile"
-        tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="350dp" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/btnSettings"
+        android:layout_width="410dp"
+        android:layout_height="61dp"
         android:layout_weight="1"
         android:text="Settings"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="412dp" />
+        app:layout_constraintCircle="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="316dp" />
+
+    <!-- Log Out Button -->
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnProfile"
+        android:layout_width="408dp"
+        android:layout_height="58dp"
+        android:layout_weight="1"
+        android:text="Profile"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="390dp" />
+
+    <Button
+        android:id="@+id/btnLogout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Reports"
-        tools:layout_editor_absoluteX="284dp"
-        tools:layout_editor_absoluteY="412dp" />
+        android:text="Log Out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
