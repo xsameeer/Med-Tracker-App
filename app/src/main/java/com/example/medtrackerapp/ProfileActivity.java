@@ -6,6 +6,8 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.medtrackerapp.database.DatabaseHandler;
+import com.example.medtrackerapp.model.User;
+import com.example.medtrackerapp.RegistrationActivity;
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -14,10 +16,13 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView genderTxtView;
     private TextView healthcareProviderTxtView;
     private ImageView profileImageView;
+    private DatabaseHandler databaseHandler;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        databaseHandler = new DatabaseHandler(this);
 
         nameTxtView = findViewById(R.id.Name);
         ageTxtView = findViewById(R.id.Age);

@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.medtrackerapp.database.DatabaseHandler;
 import com.example.medtrackerapp.model.User;
 
-import com.example.medtrackerapp.model.User;
-
 public class RegistrationActivity extends AppCompatActivity {
     private EditText txtUsername;
     private EditText txtPassword;

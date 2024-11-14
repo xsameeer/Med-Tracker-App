@@ -1,57 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/profilePicture"
         android:layout_width="159dp"
         android:layout_height="108dp"
         android:layout_gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_editor_absoluteY="10dp"/>
+        android:src="@drawable/ic_launcher_background" />
 
     <TextView
         android:id="@+id/Name"
-        android:layout_width="122dp"
-        android:layout_height="21dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Name"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="128dp" />
+        android:text="name"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp" />
+
 
     <TextView
         android:id="@+id/Age"
-        android:layout_width="122dp"
-        android:layout_height="21dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Age"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="165dp" />
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/Gender"
-        android:layout_width="122dp"
-        android:layout_height="21dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Gender"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="207dp" />
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/healthcare_provider"
-        android:layout_width="183dp"
-        android:layout_height="21dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="HealthCare Provider"
-        tools:layout_editor_absoluteX="110dp"
-        tools:layout_editor_absoluteY="244dp" />
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
 
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
