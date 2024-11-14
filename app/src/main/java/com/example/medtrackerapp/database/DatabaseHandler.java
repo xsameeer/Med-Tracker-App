@@ -1,29 +1,51 @@
 package com.example.medtrackerapp.database;
-import android.content.*;
+
+import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.example.medtrackerapp.model.User;
+import com.example.medtrackerapp.model.Medication; // Import Medication model class
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
     // Database version and name constants
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "UserManager.db";
 
-    // Table and column names
+    // User table and column names
     private static final String TABLE_USER = "user";
     private static final String COLUMN_EMAIL = "user_email";
     private static final String COLUMN_USER_PASSWORD = "user_password";
     private static final String COLUMN_PROVIDER_EMAIL = "user_providerEmail";
 
+    // Medications table and column names
+    private static final String TABLE_MEDICATIONS = "medications";
+    private static final String COLUMN_MEDICATION_ID = "medication_id";
+    private static final String COLUMN_MEDICATION_NAME = "medication_name";
+    private static final String COLUMN_DOSAGE = "dosage";
+    private static final String COLUMN_FREQUENCY = "frequency";
+
     // SQL statement to create the user table
     private static final String USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
             + COLUMN_EMAIL + " TEXT PRIMARY KEY,"  // Primary key: email
             + COLUMN_USER_PASSWORD + " TEXT,"
-            + COLUMN_PROVIDER_EMAIL+ " TEXT" + ")";    // Password column
+            + COLUMN_PROVIDER_EMAIL + " TEXT" + ")";    // Password column
 
-    // SQL statement to drop the user table if it exists
+    // SQL statement to create the medications table
+    private static final String CREATE_MEDICATIONS_TABLE = "CREATE TABLE " + TABLE_MEDICATIONS + "("
+            + COLUMN_MEDICATION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_EMAIL + " TEXT,"  // Foreign key: user email
+            + COLUMN_MEDICATION_NAME + " TEXT,"
+            + COLUMN_DOSAGE + " INTEGER,"
+            + COLUMN_FREQUENCY + " INTEGER,"
+            + "FOREIGN KEY(" + COLUMN_EMAIL + ") REFERENCES " + TABLE_USER + "(" + COLUMN_EMAIL + "))";
+
+    // SQL statement to drop the user and medications tables if they exist
     private static final String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
+    private static final String DROP_MEDICATIONS_TABLE = "DROP TABLE IF EXISTS " + TABLE_MEDICATIONS;
 
     // Constructor to initialize the DatabaseHelper
     public DatabaseHandler(Context context) {
@@ -33,119 +55,147 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Called when the database is first created
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(USER_TABLE);  // Executes the SQL to create the user table
+        db.execSQL(USER_TABLE);           // Create user table
+        db.execSQL(CREATE_MEDICATIONS_TABLE);     // Create medications table
     }
 
     // Called when the database version changes, to update the database schema
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(DROP_USER_TABLE);  // Drops the existing user table
-        onCreate(db);                 // Recreates the table by calling onCreate
+        db.execSQL(DROP_USER_TABLE);        // Drops the existing user table
+        db.execSQL(DROP_MEDICATIONS_TABLE); // Drops the existing medications table
+        onCreate(db);                       // Recreates the tables by calling onCreate
     }
 
-    // Method to add a new user to the database
+    // User-related methods
+
+    /**
+     * Adds a new user to the database.
+     */
     public void addUser(User user) {
-        SQLiteDatabase db = this.getWritableDatabase();  // Gets a writable database instance
-        ContentValues values = new ContentValues();      // Stores key-value pairs for a row
-        values.put(COLUMN_EMAIL, user.getEmail());  // Adds username to ContentValues
-        values.put(COLUMN_USER_PASSWORD, user.getPassword());  // Adds password to ContentValues
-        values.put(COLUMN_PROVIDER_EMAIL, user.getProviderEmail());  // Adds provider email to ContentValues
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_EMAIL, user.getEmail());
+        values.put(COLUMN_USER_PASSWORD, user.getPassword());
+        values.put(COLUMN_PROVIDER_EMAIL, user.getProviderEmail());
 
-        db.insert(TABLE_USER, null, values);  // Inserts the new row in the user table
-        db.close();  // Closes the database connection
+        db.insert(TABLE_USER, null, values);
+        db.close();
     }
 
-    // Method to check if a user with a specific username exists in the database
+    /**
+     * Checks if a user with a specific email exists in the database.
+     */
     public boolean checkUser(String email) {
-        // Define the columns to return
-        String[] columns = {COLUMN_EMAIL};
-        SQLiteDatabase db = this.getReadableDatabase();  // Gets a readable database instance
-
-        // Define the query criteria
-        String selection = COLUMN_EMAIL + " = ?";
-        String[] selectionArgs = { email };  // Where clause arguments
-
-        // Query the user table
-        Cursor cursor = db.query(
-                TABLE_USER,        // Table name
-                columns,           // Columns to return
-                selection,         // Where clause
-                selectionArgs,     // Where clause arguments
-                null, null, null   // GroupBy, Having, and OrderBy
-        );
-
-        int cursorCount = cursor.getCount();  // Count the results
-        cursor.close();                       // Close the cursor
-        db.close();                           // Close the database connection
-
-        return cursorCount > 0;  // Returns true if a match is found
-    }
-
-    // Method to check if a user with a specific username and password exists in the database
-    public boolean checkUser(String username, String password) {
         String[] columns = {COLUMN_EMAIL};
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // Define the query criteria for both username and password
-        String selection = COLUMN_EMAIL + " = ? AND " + COLUMN_USER_PASSWORD + " = ?";
-        String[] selectionArgs = { username, password };
+        String selection = COLUMN_EMAIL + " = ?";
+        String[] selectionArgs = { email };
 
-        // Query the user table
-        Cursor cursor = db.query(
-                TABLE_USER,
-                columns,
-                selection,
-                selectionArgs,
-                null, null, null
-        );
+        Cursor cursor = db.query(TABLE_USER, columns, selection, selectionArgs, null, null, null);
 
-        int cursorCount = cursor.getCount();  // Count the results
+        int cursorCount = cursor.getCount();
         cursor.close();
         db.close();
 
-        return cursorCount > 0;  // Returns true if a match is found
+        return cursorCount > 0;
     }
 
-        // Method to retrieve the email based on username
-        public String getEmailByUsername(String username) {
-            String email = null;
-            SQLiteDatabase db = this.getReadableDatabase();
-            Cursor cursor = db.query(
-                    "users", // Replace with your table name
-                    new String[]{"email"}, // Column to retrieve
-                    "username = ?", // WHERE clause
-                    new String[]{username}, // Arguments for WHERE clause
-                    null, null, null);
+    /**
+     * Checks if a user with a specific email and password exists in the database.
+     */
+    public boolean checkUser(String email, String password) {
+        String[] columns = {COLUMN_EMAIL};
+        SQLiteDatabase db = this.getReadableDatabase();
 
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
-                }
-                cursor.close();
-            }
-            db.close();
-            return email;
-        }
+        String selection = COLUMN_EMAIL + " = ? AND " + COLUMN_USER_PASSWORD + " = ?";
+        String[] selectionArgs = { email, password };
 
-        // Method to retrieve the password based on username
-        public String getPasswordByUsername(String username) {
-            String password = null;
-            SQLiteDatabase db = this.getReadableDatabase();
-            Cursor cursor = db.query(
-                    "users", // Replace with your table name
-                    new String[]{"password"}, // Column to retrieve
-                    "username = ?", // WHERE clause
-                    new String[]{username}, // Arguments for WHERE clause
-                    null, null, null);
+        Cursor cursor = db.query(TABLE_USER, columns, selection, selectionArgs, null, null, null);
 
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
-                }
-                cursor.close();
-            }
-            db.close();
-            return password;
-        }
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        return cursorCount > 0;
     }
+
+    /**
+     * Retrieves the provider email based on the user's email.
+     */
+    public String getProviderEmailByUserEmail(String email) {
+        String providerEmail = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_USER, new String[]{COLUMN_PROVIDER_EMAIL},
+                COLUMN_EMAIL + " = ?", new String[]{email}, null, null, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                providerEmail = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PROVIDER_EMAIL));
+            }
+            cursor.close();
+        }
+        db.close();
+        return providerEmail;
+    }
+
+    // Medication-related methods
+
+    /**
+     * Adds a new medication for a specific user.
+     */
+    public void addMedication(String userEmail, String name, int dosage, int frequency) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_EMAIL, userEmail);
+        values.put(COLUMN_MEDICATION_NAME, name);
+        values.put(COLUMN_DOSAGE, dosage);
+        values.put(COLUMN_FREQUENCY, frequency);
+
+        db.insert(TABLE_MEDICATIONS, null, values);
+        db.close();
+    }
+
+    /**
+     * Retrieves all medications for a specific user by email.
+     */
+    public List<Medication> getMedicationsByUser(String userEmail) {
+        List<Medication> medications = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selection = COLUMN_EMAIL + " = ?";
+        String[] selectionArgs = { userEmail };
+
+        Cursor cursor = db.query(TABLE_MEDICATIONS,
+                new String[]{COLUMN_MEDICATION_ID, COLUMN_MEDICATION_NAME, COLUMN_DOSAGE, COLUMN_FREQUENCY},
+                selection, selectionArgs, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Medication medication = new Medication(
+                        cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MEDICATION_ID)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MEDICATION_NAME)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_DOSAGE)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FREQUENCY))
+                );
+                medications.add(medication);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return medications;
+    }
+
+    /**
+     * Deletes a specific medication by its ID.
+     */
+    public void deleteMedication(int medicationId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_MEDICATIONS, COLUMN_MEDICATION_ID + "=?", new String[]{String.valueOf(medicationId)});
+        db.close();
+    }
+}
 

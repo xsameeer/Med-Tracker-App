@@ -25,8 +25,16 @@
             android:name=".RegistrationActivity"
             android:exported="true" />
 
-        <!-- MainActivity accessible after successful login -->
-        <activity android:name=".HomeActivity" />
+        <!-- HomeActivity accessible after successful login -->
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true" />
+
+        <!-- MedicationActivity for managing medications -->
+        <activity
+            android:name=".MedicationActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>

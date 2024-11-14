@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <!-- Medication Name Input -->
+    <EditText
+        android:id="@+id/etMedicationName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Medication Name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Dosage Input -->
+    <EditText
+        android:id="@+id/etDosage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Dosage (mg)"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/etMedicationName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Frequency Input -->
+    <EditText
+        android:id="@+id/etFrequency"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Frequency per day"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/etDosage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

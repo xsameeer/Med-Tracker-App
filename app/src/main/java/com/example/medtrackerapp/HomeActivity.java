@@ -25,40 +25,32 @@ public class HomeActivity extends AppCompatActivity {
 
         btnMedication = findViewById(R.id.btnMedication);
         btnCalendar = findViewById(R.id.btnCalendar);
-        btnProfile = findViewById(R.id.btnProfile);
         btnReports = findViewById(R.id.btnReports);
-        btnSettings = findViewById(R.id.btnSettings);
         btnLogout = findViewById(R.id.btnLogout);
 
         // Set click listeners for buttons
         btnMedication.setOnClickListener(v -> {
             // Handle Medication button click
-            Intent intent = new Intent(this, MedicationActivity.class);
+            Intent intent = new Intent(HomeActivity.this, MedicationActivity.class);
+            startActivity(intent);
         });
 
         btnCalendar.setOnClickListener(v -> {
             // Handle Calendar button click
             Intent intent = new Intent(this, CalendarActivity.class);
-        });
-
-        btnProfile.setOnClickListener(v -> {
-            // Handle Profile button click
-            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
         });
 
         btnReports.setOnClickListener(v -> {
             // Handle Reports button click
             Intent intent = new Intent(this, ReportsActivity.class);
-        });
-
-        btnSettings.setOnClickListener(v -> {
-            // Handle Settings button click
-            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         });
 
         btnLogout.setOnClickListener(v -> {
             // Handle Logout button click
             Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         });
 
     }

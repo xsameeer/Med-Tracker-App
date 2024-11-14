@@ -17,7 +17,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtPassword;
     private Button btnLogin;
     private Button btnRegister;
-    private Button btnforgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +31,11 @@ public class LoginActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
-        btnforgotPassword = findViewById(R.id.btnforgotPassword);
 
         // Set the Register button to open RegistrationActivity
         btnRegister.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
             startActivity(intent);  // Starts RegistrationActivity
-        });
-
-        btnforgotPassword.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-            startActivity(intent);
         });
 
         // Sets up the listeners for the Register and Login buttons
