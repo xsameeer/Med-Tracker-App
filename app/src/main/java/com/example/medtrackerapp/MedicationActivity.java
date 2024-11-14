@@ -1,6 +1,10 @@
 package com.example.medtrackerapp;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.medtrackerapp.database.DatabaseHandler;
 import com.example.medtrackerapp.model.Medication;
-
+import java.util.Calendar;
 import java.util.List;
 
 public class MedicationActivity extends AppCompatActivity {
@@ -21,15 +25,17 @@ public class MedicationActivity extends AppCompatActivity {
     private TableLayout tableMedications;
     private DatabaseHandler dbHandler;
     private String userEmail = "user@example.com"; // Replace with the actual logged-in user's email
+    private AlarmManager alarmManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medication);
 
-        // Initialize DatabaseHandler and TableLayout
+        // Initialize DatabaseHandler, TableLayout, and AlarmManager
         dbHandler = new DatabaseHandler(this);
         tableMedications = findViewById(R.id.tableMedications);
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         // Load existing medications from the database for the specific user
         loadMedications();
@@ -57,7 +63,7 @@ public class MedicationActivity extends AppCompatActivity {
     }
 
     /**
-     * Adds a row to the TableLayout for the specified medication.
+     * Adds a row to the TableLayout for the specified medication, with reminder functionality.
      */
     private void addMedicationRow(final Medication medication) {
         TableRow row = new TableRow(this);
@@ -72,6 +78,21 @@ public class MedicationActivity extends AppCompatActivity {
         TextView tvFrequency = new TextView(this);
         tvFrequency.setText(medication.getFrequency() + "x/day");
 
+        // TextView to display reminder time
+        TextView tvReminderTime = new TextView(this);
+        tvReminderTime.setId(View.generateViewId());
+        tvReminderTime.setText("Reminder: Not set");
+
+        // Button to set the reminder
+        Button btnSetReminder = new Button(this);
+        btnSetReminder.setText("Set Reminder");
+        btnSetReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTimePickerDialog(medication, tvReminderTime);
+            }
+        });
+
         // Create a Remove button for each row
         Button btnRemove = new Button(this);
         btnRemove.setText("Remove");
@@ -83,10 +104,12 @@ public class MedicationActivity extends AppCompatActivity {
             }
         });
 
-        // Add the TextViews and Button to the row
+        // Add the TextViews and Buttons to the row
         row.addView(tvName);
         row.addView(tvDosage);
         row.addView(tvFrequency);
+        row.addView(tvReminderTime);
+        row.addView(btnSetReminder);
         row.addView(btnRemove);
 
         // Add the row to the table layout
@@ -125,5 +148,38 @@ public class MedicationActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
+    }
+
+    /**
+     * Show a TimePicker dialog for setting medication reminders.
+     */
+    private void showTimePickerDialog(Medication medication, TextView tvReminderTime) {
+        Calendar calendar = Calendar.getInstance();
+
+        new android.app.TimePickerDialog(this, (view, hourOfDay, minute) -> {
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
+            setReminder(medication, calendar, tvReminderTime);
+        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
+    }
+
+    /**
+     * Set a reminder for the medication using AlarmManager.
+     */
+    private void setReminder(Medication medication, Calendar calendar, TextView tvReminderTime) {
+        Intent intent = new Intent(this, ReminderReceiver.class);
+        intent.putExtra("medicationName", medication.getName());
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                this,
+                medication.getId(),
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
+        // Update reminder display
+        tvReminderTime.setText("Reminder set at: " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
     }
 }
