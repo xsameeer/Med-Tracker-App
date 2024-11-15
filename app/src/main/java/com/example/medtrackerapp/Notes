@@ -13,4 +13,18 @@ receive notifications at scheduled times
 Confirm medication taken
 can't repeat medication
 
+Sprint 3:
+reports class functional and getting data from adherence table, able to generate reports from data and show previous reports
+implement settings page
+implement calendar page
+add logout button to profile page
+add custom xml files instead of ic_launcher_background/foreground
+in medication page, make sure reminders can be set to repeat every week.
+also in medication, make sure for frequency higher than 1, you can set individual timers for the medication.
+medication table have an edit feature to edit medication timings, name, dosage, frequency, days, etc
+medication table (can't see Saturday) - xml feature
+
+
+
+
 
