@@ -28,10 +28,14 @@ public class ReminderReceiver extends BroadcastReceiver {
         // Log the receipt of the broadcast
         Log.d("ReminderReceiver", "Received alarm for medication: " + medicationName);
 
-        // Intent for the "Yes" action
+        // Unique notification ID
+        int notificationId = medicationId; // Use medicationId as the unique notification ID
+
+// Intent for the "Yes" action
         Intent yesIntent = new Intent(context, NotificationActionReceiver.class);
         yesIntent.setAction("YES_ACTION");
-        yesIntent.putExtra("medicationId", medicationId);
+        yesIntent.putExtra("medicationId", medicationId); // Pass medication ID
+        yesIntent.putExtra("notificationId", notificationId); // Pass notification ID
         PendingIntent yesPendingIntent = PendingIntent.getBroadcast(
                 context,
                 medicationId, // Unique request code for "Yes"
@@ -39,10 +43,11 @@ public class ReminderReceiver extends BroadcastReceiver {
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
-        // Intent for the "No" action
+// Intent for the "No" action
         Intent noIntent = new Intent(context, NotificationActionReceiver.class);
         noIntent.setAction("NO_ACTION");
-        noIntent.putExtra("medicationId", medicationId);
+        noIntent.putExtra("medicationId", medicationId); // Pass medication ID
+        noIntent.putExtra("notificationId", notificationId); // Pass notification ID
         PendingIntent noPendingIntent = PendingIntent.getBroadcast(
                 context,
                 medicationId + 1, // Unique request code for "No"
@@ -83,7 +88,6 @@ public class ReminderReceiver extends BroadcastReceiver {
                 .addAction(R.drawable.ic_launcher_foreground, "No", noPendingIntent);  // No button
 
         // Show the notification
-        int notificationId = (int) (System.currentTimeMillis() % Integer.MAX_VALUE); // Unique notification ID
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(notificationId, notification.build());
     }

@@ -28,8 +28,7 @@
             android:layout_height="wrap_content"
             android:hint="username"
             android:inputType="text"
-            android:padding="12dp"
-            android:background="@color/cardview_dark_background" />
+            android:padding="12dp" />
 
         <!-- Password Input Field -->
         <EditText
@@ -39,7 +38,7 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:background="@color/cardview_dark_background" />
+            />
 
         <!-- HealthCare Provider Email Input Field -->
         <EditText
@@ -49,7 +48,7 @@
             android:hint="@string/provider_email"
             android:inputType="textEmailAddress"
             android:padding="12dp"
-            android:background="@color/cardview_dark_background" />
+            />
 
         <!-- Date of Birth Input Field -->
         <EditText
@@ -59,7 +58,7 @@
             android:hint="date_of_birth"
             android:inputType="date"
             android:padding="12dp"
-            android:background="@color/cardview_dark_background" />
+             />
 
         <!-- Full Name Input Field -->
         <EditText
@@ -69,7 +68,7 @@
             android:hint="full_name"
             android:inputType="textPersonName"
             android:padding="12dp"
-            android:background="@color/cardview_dark_background" />
+             />
 
         <!-- Gender Input Field -->
         <EditText
@@ -79,7 +78,7 @@
             android:hint="gender"
             android:inputType="text"
             android:padding="12dp"
-            android:background="@color/cardview_dark_background" />
+             />
 
         <!-- Register Button -->
         <Button

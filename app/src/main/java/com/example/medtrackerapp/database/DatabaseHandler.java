@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.medtrackerapp.model.User;
 import com.example.medtrackerapp.model.Medication;
@@ -199,9 +200,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void storeResponse(int medicationId, boolean response) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+
         values.put(COLUMN_MEDICATION_ID_FK, medicationId);
-        values.put(COLUMN_STATUS, response); // Store "Yes" or "No"
-        db.insert(TABLE_ADHERENCE, null, values);
+        values.put(COLUMN_STATUS, response ? "Yes" : "No"); // Convert boolean to "Yes"/"No"
+
+        long rowId = db.insert(TABLE_ADHERENCE, null, values); // Capture the result for debugging
+
+        if (rowId != -1) {
+            Log.d("DatabaseHandler", "Response stored successfully: Medication ID = " + medicationId +
+                    ", Response = " + (response ? "Yes" : "No"));
+        } else {
+            Log.e("DatabaseHandler", "Failed to store response for Medication ID = " + medicationId);
+        }
+
         db.close();
     }
 
