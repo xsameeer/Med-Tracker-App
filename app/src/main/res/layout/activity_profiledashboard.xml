@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <!-- Profile Picture -->
+        <ImageView
+            android:id="@+id/profilePicture"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="Profile Picture"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle_background" />
+
+        <!-- Name -->
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+
+        <!-- Date of Birth -->
+        <TextView
+            android:id="@+id/date_of_birth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Date of Birth"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Gender -->
+        <TextView
+            android:id="@+id/Gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Gender"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Healthcare Provider -->
+        <TextView
+            android:id="@+id/healthcare_provider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="HealthCare Provider"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Edit Profile Button -->
+        <Button
+            android:id="@+id/btnEditProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:layout_marginTop="16dp" />
+
+        <!-- Dashboard Options -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="24dp" />
+
+        <TextView
+            android:id="@+id/tvDashboardSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Dashboard"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <!-- Medical History -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:id="@+id/iconMedicalHistory"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_medical_history"
+                android:contentDescription="Medical History Icon" />
+
+            <TextView
+                android:id="@+id/tvMedicalHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Medical History"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Appointments -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:id="@+id/iconAppointments"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_appointments"
+                android:contentDescription="Appointments Icon" />
+
+            <TextView
+                android:id="@+id/tvAppointments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Appointments"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Settings -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:id="@+id/iconSettings"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_settings"
+                android:contentDescription="Settings Icon" />
+
+            <TextView
+                android:id="@+id/tvSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Settings"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Logout Button -->
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:backgroundTint="@color/design_default_color_error"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="32dp" />
+
+    </LinearLayout>
+</ScrollView>
