@@ -21,7 +21,7 @@
             android:contentDescription="Profile Picture"
             android:layout_marginBottom="16dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/circle_background" />
+            android:background="@drawable/ic_launcher_background" />
 
         <!-- Name -->
         <TextView
@@ -102,7 +102,7 @@
                 android:id="@+id/iconMedicalHistory"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_medical_history"
+                android:src="@drawable/ic_launcher_background"
                 android:contentDescription="Medical History Icon" />
 
             <TextView
@@ -126,7 +126,7 @@
                 android:id="@+id/iconAppointments"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_appointments"
+                android:src="@drawable/ic_launcher_background"
                 android:contentDescription="Appointments Icon" />
 
             <TextView
@@ -150,7 +150,7 @@
                 android:id="@+id/iconSettings"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_settings"
+                android:src="@drawable/ic_launcher_background"
                 android:contentDescription="Settings Icon" />
 
             <TextView
