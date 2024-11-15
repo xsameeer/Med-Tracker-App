@@ -181,6 +181,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return medications;
     }
 
+    public boolean checkMedication(String name) {
+        String[] columns = {COLUMN_MEDICATION_NAME};
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = COLUMN_MEDICATION_NAME + " = ?";
+        String[] selectionArgs = {name};
+        Cursor cursor = db.query(TABLE_MEDICATIONS, columns, selection, selectionArgs, null, null, null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+        return cursorCount > 0;
+    }
+
     // Adherence-related methods
 
     public void logAdherence(int medicationId, String date, boolean taken) {

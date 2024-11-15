@@ -41,6 +41,7 @@ public class MedicationActivity extends AppCompatActivity {
     private DatabaseHandler dbHandler;
     private String userEmail = "user@example.com"; // Replace with the actual logged-in user's email
     private AlarmManager alarmManager;
+    private EditText medicationName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class MedicationActivity extends AppCompatActivity {
         dbHandler = new DatabaseHandler(this);
         tableMedications = findViewById(R.id.tableMedications);
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
 
         loadMedications();
 
@@ -139,7 +141,12 @@ public class MedicationActivity extends AppCompatActivity {
                     String name = etMedicationName.getText().toString();
                     int dosage = Integer.parseInt(etDosage.getText().toString());
                     int frequency = Integer.parseInt(etFrequency.getText().toString());
-
+                    if (dbHandler.checkMedication(etMedicationName.getText().toString())){
+                        Toast.makeText(this, "Medication already exists", Toast.LENGTH_SHORT).show();
+                        return;
+                        //exit here
+                    }
+                    else{
                     // Get selected days
                     List<String> selectedDays = new ArrayList<>();
                     for (CheckBox checkBox : dayCheckBoxes) {
@@ -159,6 +166,7 @@ public class MedicationActivity extends AppCompatActivity {
 
                     loadMedications();
                     Toast.makeText(this, "Medication Added", Toast.LENGTH_SHORT).show();
+                        }
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
@@ -282,4 +290,4 @@ public class MedicationActivity extends AppCompatActivity {
     }
 }
 
-//adherence tracker and does not allow repeat medication in the list
+//adherence tracker
