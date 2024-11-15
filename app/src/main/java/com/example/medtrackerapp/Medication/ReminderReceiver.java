@@ -23,19 +23,30 @@ public class ReminderReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String medicationName = intent.getStringExtra("medicationName");
+        int medicationId = intent.getIntExtra("medicationId", -1); // Ensure medicationId is passed for unique identification
 
         // Log the receipt of the broadcast
         Log.d("ReminderReceiver", "Received alarm for medication: " + medicationName);
 
-        // Intent to open the MedicationActivity when the notification is clicked
-        Intent nextActivity = new Intent(context, MedicationActivity.class);
-        nextActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-        int requestCode = (int) System.currentTimeMillis();
-        PendingIntent pendingIntent = PendingIntent.getActivity(
+        // Intent for the "Yes" action
+        Intent yesIntent = new Intent(context, NotificationActionReceiver.class);
+        yesIntent.setAction("YES_ACTION");
+        yesIntent.putExtra("medicationId", medicationId);
+        PendingIntent yesPendingIntent = PendingIntent.getBroadcast(
                 context,
-                requestCode,
-                nextActivity,
+                medicationId, // Unique request code for "Yes"
+                yesIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        // Intent for the "No" action
+        Intent noIntent = new Intent(context, NotificationActionReceiver.class);
+        noIntent.setAction("NO_ACTION");
+        noIntent.putExtra("medicationId", medicationId);
+        PendingIntent noPendingIntent = PendingIntent.getBroadcast(
+                context,
+                medicationId + 1, // Unique request code for "No"
+                noIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
@@ -60,15 +71,16 @@ public class ReminderReceiver extends BroadcastReceiver {
             }
         }
 
-        // Build the notification
+        // Build the notification with Yes and No buttons
         NotificationCompat.Builder notification = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background) // Replace with your app's actual notification icon
                 .setContentTitle("Medication Reminder")
-                .setContentText("Time to take your medication: " + medicationName)
+                .setContentText("Did you take your medication: " + medicationName + "?")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setContentIntent(pendingIntent);
+                .addAction(R.drawable.ic_launcher_background, "Yes", yesPendingIntent) // Yes button
+                .addAction(R.drawable.ic_launcher_foreground, "No", noPendingIntent);  // No button
 
         // Show the notification
         int notificationId = (int) (System.currentTimeMillis() % Integer.MAX_VALUE); // Unique notification ID

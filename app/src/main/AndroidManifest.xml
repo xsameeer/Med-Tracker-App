@@ -41,6 +41,7 @@
             android:exported="true" />
 
         <receiver android:name=".Medication.ReminderReceiver"/>
+        <receiver android:name=".Medication.NotificationActionReceiver" android:exported="true" />
 
         <activity
             android:name=".ProfileActivity"

@@ -5,8 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import com.example.medtrackerapp.model.User;
 import com.example.medtrackerapp.model.Medication;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,8 +66,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String CREATE_ADHERENCE_TABLE = "CREATE TABLE " + TABLE_ADHERENCE + "("
             + COLUMN_ADHERENCE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_MEDICATION_ID_FK + " INTEGER,"
-            + COLUMN_DATE + " TEXT,"
-            + COLUMN_STATUS + " INTEGER,"
+            + COLUMN_STATUS + " TEXT," // Updated: Use TEXT for "Yes"/"No" instead of INTEGER
             + "FOREIGN KEY(" + COLUMN_MEDICATION_ID_FK + ") REFERENCES " + TABLE_MEDICATIONS + "(" + COLUMN_MEDICATION_ID + "))";
 
     private static final String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
@@ -194,6 +195,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Adherence-related methods
+
+    public void storeResponse(int medicationId, boolean response) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_MEDICATION_ID_FK, medicationId);
+        values.put(COLUMN_STATUS, response); // Store "Yes" or "No"
+        db.insert(TABLE_ADHERENCE, null, values);
+        db.close();
+    }
 
     public void logAdherence(int medicationId, String date, boolean taken) {
         SQLiteDatabase db = this.getWritableDatabase();
