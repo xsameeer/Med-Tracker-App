@@ -1,6 +1,7 @@
 package com.example.medtrackerapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +46,16 @@ public void btnRegisterListener() {
             user.setDateOfBirth(txtDateOfBirth.getText().toString().trim());
             user.setName(txtName.getText().toString().trim());
             user.setGender(txtGender.getText().toString().trim());
+
+            //Save user data to sharedpreferences
+            SharedPreferences sharedPreferences = getSharedPreferences("UserProfile" , MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("Name", user.getName());
+            editor.putString("Email", user.getEmail());
+            editor.putString("Gender", user.getGender());
+            editor.putString("DOB", user.getDateOfBirth());
+            editor.putString("Healthcare Provider", user.getProviderEmail());
+            editor.apply(); //Apply changes
 
             databasehandler.addUser(user);
             Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);

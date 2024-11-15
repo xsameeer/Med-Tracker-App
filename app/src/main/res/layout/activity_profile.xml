@@ -25,11 +25,11 @@
 
 
     <TextView
-        android:id="@+id/Age"
+        android:id="@+id/date_of_birth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Age"
+        android:text="Date of Birth"
         android:textSize="18sp"
         android:layout_marginTop="8dp" />
 
