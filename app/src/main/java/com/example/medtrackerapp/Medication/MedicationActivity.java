@@ -1,12 +1,18 @@
 package com.example.medtrackerapp.Medication;
 
+import static android.app.AlarmManager.*;
+
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +47,10 @@ public class MedicationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medication);
 
+        // Check and request notification permission
+        checkAndRequestNotificationPermission();
+
+        // Existing initialization code
         dbHandler = new DatabaseHandler(this);
         tableMedications = findViewById(R.id.tableMedications);
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -48,12 +58,7 @@ public class MedicationActivity extends AppCompatActivity {
         loadMedications();
 
         Button btnAddMedication = findViewById(R.id.btnAddMedication);
-        btnAddMedication.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAddMedicationDialog();
-            }
-        });
+        btnAddMedication.setOnClickListener(v -> showAddMedicationDialog());
     }
 
     private void loadMedications() {
@@ -80,23 +85,12 @@ public class MedicationActivity extends AppCompatActivity {
         TextView tvReminderTime = new TextView(this);
         tvReminderTime.setId(View.generateViewId());
 
-        Button btnSetReminder = new Button(this);
-        btnSetReminder.setText("Set Reminder");
-        btnSetReminder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTimePickerDialog(medication, tvReminderTime);
-            }
-        });
-
         Button btnRemove = new Button(this);
         btnRemove.setText("Remove");
-        btnRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dbHandler.deleteMedication(medication.getId());
-                loadMedications();
-            }
+        btnRemove.setOnClickListener(v -> {
+            dbHandler.deleteMedication(medication.getId());
+            loadMedications();
+            Toast.makeText(this, "Medication Removed", Toast.LENGTH_SHORT).show();
         });
 
         row.addView(tvName);
@@ -104,7 +98,6 @@ public class MedicationActivity extends AppCompatActivity {
         row.addView(tvFrequency);
         row.addView(btnRemove);
         row.addView(tvReminderTime);
-        row.addView(btnSetReminder);
 
         tableMedications.addView(row);
     }
@@ -119,7 +112,6 @@ public class MedicationActivity extends AppCompatActivity {
         final Button btnSetTime = dialogView.findViewById(R.id.btnSetTime);
         final TextView tvSelectedTime = dialogView.findViewById(R.id.tvSelectedTime);
 
-        // Add day of week checkboxes
         final LinearLayout daysLayout = dialogView.findViewById(R.id.daysLayout);
         CheckBox[] dayCheckBoxes = new CheckBox[7];
         String[] days = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
@@ -129,96 +121,91 @@ public class MedicationActivity extends AppCompatActivity {
             daysLayout.addView(dayCheckBoxes[i]);
         }
 
-        // Calendar to hold the selected time
         final Calendar calendar = Calendar.getInstance();
 
-        // Set up the time picker button
-        btnSetTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open time picker dialog
-                new android.app.TimePickerDialog(MedicationActivity.this, (view, hourOfDay, minute) -> {
-                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                    calendar.set(Calendar.MINUTE, minute);
+        // Set time picker
+        btnSetTime.setOnClickListener(v -> new android.app.TimePickerDialog(MedicationActivity.this, (view, hourOfDay, minute) -> {
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
 
-                    // Display selected time
-                    String timeText = String.format("Selected time: %02d:%02d", hourOfDay, minute);
-                    tvSelectedTime.setText(timeText);
-                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
-            }
-        });
+            String timeText = String.format("Selected time: %02d:%02d", hourOfDay, minute);
+            tvSelectedTime.setText(timeText);
+        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show());
 
         new AlertDialog.Builder(this)
                 .setTitle("Add Medication")
                 .setView(dialogView)
-                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String name = etMedicationName.getText().toString();
-                        int dosage = Integer.parseInt(etDosage.getText().toString());
-                        int frequency = Integer.parseInt(etFrequency.getText().toString());
+                .setPositiveButton("Add", (dialog, which) -> {
+                    String name = etMedicationName.getText().toString();
+                    int dosage = Integer.parseInt(etDosage.getText().toString());
+                    int frequency = Integer.parseInt(etFrequency.getText().toString());
 
-                        List<String> selectedDays = new ArrayList<>();
-                        for (int i = 0; i < days.length; i++) {
-                            if (dayCheckBoxes[i].isChecked()) {
-                                selectedDays.add(days[i]);
-                            }
+                    // Get selected days
+                    List<String> selectedDays = new ArrayList<>();
+                    for (CheckBox checkBox : dayCheckBoxes) {
+                        if (checkBox.isChecked()) {
+                            selectedDays.add(checkBox.getText().toString());
                         }
-
-                        String daysOfWeek = String.join(",", selectedDays);
-
-                        // Add medication with selected time
-                        dbHandler.addMedication(userEmail, name, dosage, frequency, daysOfWeek, "", false);
-
-                        loadMedications();
                     }
+
+                    String daysOfWeek = String.join(",", selectedDays);
+
+                    // Add medication to database
+                    Medication medication = new Medication(0, name, dosage, frequency, daysOfWeek, "", false);
+                    dbHandler.addMedication(userEmail, name, dosage, frequency, daysOfWeek, "", false);
+
+                    // Schedule alarms for each selected day
+                    scheduleAlarmsForMedication(medication, calendar, selectedDays);
+
+                    loadMedications();
+                    Toast.makeText(this, "Medication Added", Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
-        Toast.makeText(this, "Reminder Placed", Toast.LENGTH_SHORT).show();
     }
 
-    private void showTimePickerDialog(Medication medication, TextView tvReminderTime) {
-        Calendar calendar = Calendar.getInstance();
-
-        new android.app.TimePickerDialog(this, (view, hourOfDay, minute) -> {
-            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            calendar.set(Calendar.MINUTE, minute);
-            setReminder(medication, calendar, tvReminderTime);
-        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
-    }
-
-    private void setReminder(Medication medication, Calendar calendar, TextView tvReminderTime) {
-        List<String> selectedDays = getSelectedDays(medication.getDaysOfWeek());
-        Calendar now = Calendar.getInstance();
-        int currentDay = now.get(Calendar.DAY_OF_WEEK);
-
+    private void scheduleAlarmsForMedication(Medication medication, Calendar calendar, List<String> selectedDays) {
         for (String day : selectedDays) {
             int dayOfWeek = getDayOfWeek(day);
-            if (dayOfWeek >= currentDay) {
-                calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek);
-                calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
-                calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
-                scheduleAlarm(medication, calendar, tvReminderTime);
+
+            // Adjust calendar for the correct day of the week
+            Calendar alarmCalendar = (Calendar) calendar.clone();
+            alarmCalendar.set(Calendar.DAY_OF_WEEK, dayOfWeek);
+
+            // If the alarm time has already passed for this week, set it for the next week
+            if (alarmCalendar.before(Calendar.getInstance())) {
+                alarmCalendar.add(Calendar.WEEK_OF_YEAR, 1);
             }
+
+            // Schedule the alarm
+            scheduleAlarm(medication, alarmCalendar);
         }
     }
 
-    private void scheduleAlarm(Medication medication, Calendar calendar, TextView tvReminderTime) {
+    private void scheduleAlarm(Medication medication, Calendar calendar) {
         Intent intent = new Intent(this, ReminderReceiver.class);
         intent.putExtra("medicationName", medication.getName());
 
+        // Create a unique PendingIntent using medication ID and day of week
+        int requestCode = medication.getId() + calendar.get(Calendar.DAY_OF_WEEK);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 this,
-                medication.getId(),
+                requestCode,
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-
-        tvReminderTime.setText("Reminder set for: " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
+        // Schedule the alarm
+        if (alarmManager != null) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                alarmManager.setExactAndAllowWhileIdle(RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            } else {
+                alarmManager.setExact(RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            }
+            Log.d("MedicationActivity", "Alarm set for: " + calendar.getTime() + " for medication: " + medication.getName());
+        }
     }
+
 
     private List<String> getSelectedDays(String daysOfWeek) {
         List<String> selectedDays = new ArrayList<>();
@@ -251,4 +238,48 @@ public class MedicationActivity extends AppCompatActivity {
                 return Calendar.SUNDAY;
         }
     }
+
+    private static final int NOTIFICATION_PERMISSION_REQUEST_CODE = 100;
+
+    // Check and request notification permission
+    private void checkAndRequestNotificationPermission() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                // Request the permission
+                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, NOTIFICATION_PERMISSION_REQUEST_CODE);
+            }
+        }
+    }
+
+    // Handle permission result
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == NOTIFICATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Notification permission granted!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Notification permission denied. You may miss reminders.", Toast.LENGTH_LONG).show();
+                // Optionally guide users to enable permissions
+                promptToOpenAppSettings();
+            }
+        }
+    }
+
+    // Optional: Prompt to open app settings
+    private void promptToOpenAppSettings() {
+        new AlertDialog.Builder(this)
+                .setTitle("Enable Notifications")
+                .setMessage("Notification permission is required to remind you about your medications. Please enable it in the app settings.")
+                .setPositiveButton("Go to Settings", (dialog, which) -> {
+                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    intent.setData(Uri.parse("package:" + getPackageName()));
+                    startActivity(intent);
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
 }
+
+//adherence tracker and does not allow repeat medication in the list
