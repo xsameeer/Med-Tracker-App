@@ -17,7 +17,8 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
 
     <!-- Add Medication Button -->
     <Button
@@ -25,16 +26,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Medication"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMedicationTitle"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        android:layout_marginTop="16dp" />
 
     <!-- Scrollable container for the medication table -->
     <ScrollView
         android:id="@+id/scrollViewMedications"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tvMedicationTitle"
+        app:layout_constraintTop_toBottomOf="@id/btnAddMedication"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,29 +58,30 @@
 
                 <TextView
                     android:id="@+id/tvMedicationHeaderName"
-                    android:layout_width="83dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="1dp"
+                    android:layout_weight="1"
                     android:text="Medication Name"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal" />
 
                 <TextView
                     android:id="@+id/tvMedicationHeaderDosage"
-                    android:layout_width="1dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:padding="1dp"
+                    android:layout_weight="1"
                     android:text="Dosage (mg)"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal" />
 
                 <TextView
                     android:id="@+id/tvMedicationHeaderFrequency"
-                    android:layout_width="18dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:padding="1dp"
+                    android:layout_weight="1"
                     android:text="Frequency/Day"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal" />
 
                 <TextView
                     android:id="@+id/tvMedicationHeaderActions"
@@ -88,42 +91,56 @@
                     android:padding="1dp" />
             </TableRow>
 
-            <!-- Example medication row -->
-            <TableRow
-                android:id="@+id/rowMedicationExample"
-                android:layout_marginBottom="4dp"
-                android:padding="8dp">
+            <!-- Example medication row within a CardView for better separation -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp"
+                android:layout_marginBottom="8dp">
 
-                <TextView
-                    android:id="@+id/tvMedicationName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Aspirin"
-                    android:padding="8dp" />
+                <TableRow
+                    android:padding="8dp">
 
-                <TextView
-                    android:id="@+id/tvMedicationDosage"
-                    android:layout_width="28dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:padding="8dp"
-                    android:text="100" />
+                    <!-- Medication Name -->
+                    <TextView
+                        android:id="@+id/tvMedicationName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Aspirin"
+                        android:padding="8dp" />
 
-                <!-- Remove medication button -->
-                <TextView
-                    android:id="@+id/tvMedicationFrequency"
-                    android:layout_width="1dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:padding="1dp"
-                    android:text="2" />
+                    <!-- Dosage -->
+                    <TextView
+                        android:id="@+id/tvMedicationDosage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:text="100" />
 
-                <Button
-                    android:id="@+id/btnRemoveMedication"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Remove" />
-            </TableRow>
+                    <!-- Frequency -->
+                    <TextView
+                        android:id="@+id/tvMedicationFrequency"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:text="2" />
+
+                    <!-- Remove button -->
+                    <Button
+                        android:id="@+id/btnRemoveMedication"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Remove"
+                        android:padding="8dp" />
+                </TableRow>
+
+            </androidx.cardview.widget.CardView>
 
         </TableLayout>
     </ScrollView>
