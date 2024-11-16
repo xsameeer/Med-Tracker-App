@@ -16,7 +16,6 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnProfile;
     private Button btnReports;
     private Button btnSettings;
-    private Button btnLogout;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -27,7 +26,6 @@ public class HomeActivity extends AppCompatActivity {
         btnMedication = findViewById(R.id.btnMedication);
         btnCalendar = findViewById(R.id.btnCalendar);
         btnProfile = findViewById(R.id.btnProfile);
-        btnLogout = findViewById(R.id.btnLogout);
 
         // Set click listeners for buttons
         btnMedication.setOnClickListener(v -> {
@@ -45,12 +43,6 @@ public class HomeActivity extends AppCompatActivity {
         btnProfile.setOnClickListener(v -> {
             // Handle Reports button click
             Intent intent = new Intent(this, ProfileActivity.class);
-            startActivity(intent);
-        });
-
-        btnLogout.setOnClickListener(v -> {
-            // Handle Logout button click
-            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         });
 

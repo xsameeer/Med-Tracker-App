@@ -1,5 +1,6 @@
 package com.example.medtrackerapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.*;
@@ -16,6 +17,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView genderTxtView;
     private TextView healthcareProviderTxtView;
     private ImageView profileImageView;
+    private Button btnLogout;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
         genderTxtView = findViewById(R.id.Gender);
         healthcareProviderTxtView = findViewById(R.id.healthcare_provider);
         profileImageView = findViewById(R.id.profilePicture);
+        btnLogout = findViewById(R.id.btnLogout);
 
         SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
         String name = sharedPreferences.getString("Name", "No name");
@@ -37,5 +40,11 @@ public class ProfileActivity extends AppCompatActivity {
         date_of_birthTxtView.setText("DOB: " + dateOfBirth);
         genderTxtView.setText("Gender: " + gender);
         healthcareProviderTxtView.setText("Healthcare Provider: " + healthcareProvider);
+
+        btnLogout.setOnClickListener(v -> {
+            // Handle Logout button click
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        });
     }
 }
