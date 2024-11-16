@@ -23,6 +23,7 @@ in medication page, make sure reminders can be set to repeat every week.
 also in medication, make sure for frequency higher than 1, you can set individual timers for the medication.
 medication table have an edit feature to edit medication timings, name, dosage, frequency, days, etc
 add forgot password functionality
+Medication table not getting saved to users by user account, it's just getting stored in the app and accessible to all users***
 
 
 
