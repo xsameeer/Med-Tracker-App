@@ -55,7 +55,7 @@
                         android:id="@+id/tvReportTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Medical Summary - Oct 2024"
+                        android:text="Medical Summary"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp" />
@@ -64,7 +64,7 @@
                         android:id="@+id/tvReportDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Generated on: Oct 15, 2024"
+                        android:text="Generated on:"
                         android:textSize="14sp"
                         android:textColor="#757575"
                         android:layout_marginBottom="8dp" />
@@ -74,6 +74,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="View Report" />
+
+                    <Button
+                        android:id="@+id/btnGenerateReport"
+                        android:layout_width="266dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/design_default_color_primary"
+                        android:text="Generate and Email Report"
+                        android:textColor="@android:color/white"
+                        app:layout_constraintBottom_toTopOf="@id/btnDownloadReports"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -86,14 +98,14 @@
     <!-- Download All Reports Button -->
     <Button
         android:id="@+id/btnDownloadReports"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Download All Reports"
+        android:layout_width="305dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/design_default_color_primary"
+        android:text="Download All Reports"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

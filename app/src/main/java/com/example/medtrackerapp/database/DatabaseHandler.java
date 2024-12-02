@@ -43,6 +43,89 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String COLUMN_DATE = "date";
     private static final String COLUMN_STATUS = "status";
 
+    public String getTableUser() {
+        return TABLE_USER;
+    }
+
+    public String getTableMedications() {
+        return TABLE_MEDICATIONS;
+    }
+
+    public String getTableAdherence() {
+        return TABLE_ADHERENCE;
+    }
+
+    // Getters for User Table Columns
+    public String getColumnEmail() {
+        return COLUMN_EMAIL;
+    }
+
+    public String getColumnUserPassword() {
+        return COLUMN_USER_PASSWORD;
+    }
+
+    public String getColumnProviderEmail() {
+        return COLUMN_PROVIDER_EMAIL;
+    }
+
+    public String getColumnName() {
+        return COLUMN_NAME;
+    }
+
+    public String getColumnDateOfBirth() {
+        return COLUMN_DATE_OF_BIRTH;
+    }
+
+    public String getColumnGender() {
+        return COLUMN_GENDER;
+    }
+
+    public String getColumnMedicationId() {
+        return COLUMN_MEDICATION_ID;
+    }
+
+    public String getColumnMedicationName() {
+        return COLUMN_MEDICATION_NAME;
+    }
+
+    public String getColumnDosage() {
+        return COLUMN_DOSAGE;
+    }
+
+    public String getColumnFrequency() {
+        return COLUMN_FREQUENCY;
+    }
+
+    public String getColumnDaysOfWeek() {
+        return COLUMN_DAYS_OF_WEEK;
+    }
+
+    public String getColumnEndDate() {
+        return COLUMN_END_DATE;
+    }
+
+    public String getColumnIndefinite() {
+        return COLUMN_INDEFINITE;
+    }
+
+    // Getters for Adherence Table Columns
+    public String getColumnAdherenceId() {
+        return COLUMN_ADHERENCE_ID;
+    }
+
+    public String getColumnMedicationIdFk() {
+        return COLUMN_MEDICATION_ID_FK;
+    }
+
+    public String getColumnDate() {
+        return COLUMN_DATE;
+    }
+
+    public String getColumnStatus() {
+        return COLUMN_STATUS;
+    }
+
+
     // SQL statement to create the user table
     private static final String USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
             + COLUMN_EMAIL + " TEXT PRIMARY KEY,"
