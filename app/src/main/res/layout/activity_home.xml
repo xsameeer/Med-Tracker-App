@@ -69,6 +69,19 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnMedication"
+        tools:ignore="NotSibling">
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -87,6 +100,36 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
+
+    <Button
+        android:id="@+id/btnReports"
+        android:layout_width="125dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="134dp"
+        android:layout_marginBottom="17dp"
+        android:layout_weight="1"
+        android:text="Reports"
+        app:layout_constraintBottom_toTopOf="@+id/btnSettings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="129dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="340dp"
+        android:layout_weight="1"
+        android:text="Settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnReports" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
