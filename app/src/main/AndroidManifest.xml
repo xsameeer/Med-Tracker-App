@@ -51,6 +51,10 @@
             android:exported="true" />
 
         <activity
+            android:name=".CalendarActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".ReportsActivity"
             android:exported="true" />
 
