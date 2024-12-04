@@ -1,142 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity"
+    android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Title -->
     <TextView
-        android:id="@+id/tvSettingsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Med Tracker Settings"
+        android:text="Account Settings"
         android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        android:layout_gravity="center_horizontal"
+        android:marginBottom="16dp" />
 
-    <!-- Notifications Switch -->
-    <LinearLayout
-        android:id="@+id/notificationsLayout"
+    <EditText
+        android:id="@+id/nameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tvSettingsTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        android:gravity="center_vertical">
+        android:hint="Enter your name"
+        android:inputType="textPersonName"
+        android:marginBottom="16dp" />
 
-        <TextView
-            android:id="@+id/tvNotificationsLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Enable Notifications"
-            android:textSize="18sp" />
-
-        <Switch
-            android:id="@+id/switchNotifications"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <!-- Reminder Time -->
-    <LinearLayout
-        android:id="@+id/reminderLayout"
+    <EditText
+        android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/notificationsLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:gravity="center_vertical">
+        android:hint="Enter your email"
+        android:inputType="textEmailAddress"
+        android:marginBottom="16dp" />
 
-        <TextView
-            android:id="@+id/tvReminderLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Daily Reminder Time"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnSetReminder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set Time" />
-    </LinearLayout>
-
-    <!-- Sync Data -->
-    <LinearLayout
-        android:id="@+id/syncLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/reminderLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/tvSyncLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Sync Data with Cloud"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnSyncData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sync Now" />
-    </LinearLayout>
-
-    <!-- Dark Mode Switch -->
-    <LinearLayout
-        android:id="@+id/themeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/syncLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/tvThemeLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Dark Mode"
-            android:textSize="18sp" />
-
-        <Switch
-            android:id="@+id/switchTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <!-- Logout Button -->
     <Button
-        android:id="@+id/btnLogout"
+        android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        android:backgroundTint="@color/design_default_color_error"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/themeLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="Save" />
+</LinearLayout>

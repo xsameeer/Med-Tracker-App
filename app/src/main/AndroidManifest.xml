@@ -60,8 +60,7 @@
 
         <activity
             android:name=".SettingsActivity"
-            android:exported="true"
-            tools:ignore="Instantiatable" />
+            android:exported="true" />
 
         <!-- FileProvider Configuration -->
         <provider

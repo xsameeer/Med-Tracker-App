@@ -43,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         btnProfile.setOnClickListener(v -> {
-            // Handle Reports button click
+            // Handle profile button click
             Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
         });
@@ -55,8 +55,8 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         btnSettings.setOnClickListener(v -> {
-            // Handle Reports button click
-            Intent intent = new Intent(this, SettingsActivity.class);
+            // Handle Settings button click
+            Intent intent = new Intent(this, com.example.medtrackerapp.Settings.SettingsActivity.class);
             startActivity(intent);
         });
 

@@ -19,6 +19,16 @@ implement settings page
 
 stephen- add custom xml files instead of ic_launcher_background/foreground and profile photo functionality - xml feature {make sure it works with the existing code}
 
+testcases for sprint 3:
+Generates report and view - 1
+Email's report to provider - 2
+Downloads report to device - 3
+above done
+Settings allows you to change name, email, password, provider email from database for account - 4
+see what you can add to reports page functionality for 4th test case.
+
+
+
 Sameer - add medication dialog table (can't see Saturday) - xml feature {make sure it works with the existing code}
 in medication page, make sure reminders can be set to repeat every week.
 also in medication, make sure for frequency higher than 1, you can set individual timers for the medication.
