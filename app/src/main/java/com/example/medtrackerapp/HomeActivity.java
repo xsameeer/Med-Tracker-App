@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
 
         btnSettings.setOnClickListener(v -> {
             // Handle Settings button click
-            Intent intent = new Intent(this, com.example.medtrackerapp.Settings.SettingsActivity.class);
+            Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         });
 
