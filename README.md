@@ -1,9 +1,9 @@
 My group members are:
-- Sameer Ali: BackEnd
-- Devin Hale: BackEnd
+- Sameer Ali
+- Devin Hale
 - Michael Burner
 - Gladys Ayanou
-- Stephen Stalnaker: FrontEnd
+- Stephen Stalnaker
 - Naol Muleta
 
 
